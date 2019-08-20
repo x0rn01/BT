@@ -1,0 +1,95 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.ajoberstar:gradle-git:0.6.1'
+    }
+}
+
+import org.ajoberstar.gradle.git.tasks.GitTag
+import org.ajoberstar.gradle.git.tasks.GitPush
+
+ext.yourTag = "REL-${project.version.toString()}"
+
+task createTag(type: GitTag) {
+    repoPath = rootDir
+    tagName = yourTag
+    message = "Application release ${project.version.toString()}"
+}
+
+task pushTag(type: GitPush, dependsOn: createTag) {
+    namesOrSpecs = [yourTag]
+}
+
+// script will generate version from git describe command and update gradle.properties file
+task updateGradleProperties(type: Exec) {
+    commandLine = "./git-revision.sh"
+    println "executing ${commandLine}"
+    standardOutput = new ByteArrayOutputStream()
+    doLast {
+        ext.result = standardOutput.toString()
+        // update project version from gradle.properties file
+        Properties props = new Properties()
+        File propsFile = new File('gradle.properties')
+        props.load(propsFile.newDataInputStream())
+
+        props.setProperty('version', standardOutput.toString().replaceAll("\\n", ""))
+        props.store(propsFile.newWriter(), null)
+    }
+}
+
+task commitRelease(type: Exec) {
+    dependsOn updateGradleProperties
+
+    println "hey: " + project.version
+
+    commandLine = "./git-commit.sh"
+    println "executing ${commandLine}"
+    standardOutput = new ByteArrayOutputStream()
+    doLast {
+        println "commit hash: " + standardOutput.toString()
+    }
+
+}
+
+
+
+// commit version update
+/*
+task runCommitScript(type: Exec) {
+    commandLine = "./git-commit.sh"
+    println "executing ${commandLine}"
+    standardOutput = new ByteArrayOutputStream()
+    doLast {
+        ext.result = standardOutput.toString()
+    }
+}
+runCommitScript.dependsOn('updateGradleProperties')
+
+task updateGradleProperties(dependsOn: runRevisionScript) {
+    doFirst {
+        println "clean version: ${runRevisionScript.result}"
+
+        // update project version from gradle.properties file
+        Properties props = new Properties()
+        File propsFile = new File('gradle.properties')
+        props.load(propsFile.newDataInputStream())
+
+        props.setProperty('version', version.replaceAll("\\n", ""))
+        props.store(propsFile.newWriter(), null)
+
+        println "version updated from gradle.properties"
+    }
+}
+
+task commitRelease() {
+    doFirst {
+        //println "commit hash: ${runCommitScript.result}"
+    }
+}
+commitRelease.dependsOn('updateGradleProperties')
+
+//         // commit gradle.properties file update
+//        println "commit hash: ${commitNewVersion.result}" */
