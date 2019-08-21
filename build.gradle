@@ -2,94 +2,67 @@ buildscript {
     repositories {
         mavenCentral()
     }
-
-    dependencies {
-        classpath 'org.ajoberstar:gradle-git:0.6.1'
-    }
 }
 
-import org.ajoberstar.gradle.git.tasks.GitTag
-import org.ajoberstar.gradle.git.tasks.GitPush
+ext.updateVersionProperty = { newVersion ->
+    Properties props = new Properties()
+    File propsFile = new File('gradle.properties')
+    props.load(propsFile.newDataInputStream())
 
-ext.yourTag = "REL-${project.version.toString()}"
-
-task createTag(type: GitTag) {
-    repoPath = rootDir
-    tagName = yourTag
-    message = "Application release ${project.version.toString()}"
+    props.setProperty('version', newVersion)
+    props.store(propsFile.newWriter(), null)
 }
 
-task pushTag(type: GitPush, dependsOn: createTag) {
-    namesOrSpecs = [yourTag]
+ext.generateReleaseVersion = {
+    Properties props = new Properties()
+    File propsFile = new File('gradle.properties')
+    props.load(propsFile.newDataInputStream())
+
+    String[] versions = props.getProperty("version").split("\\.")
+    String subVersionIncremented = (versions[2].toInteger() + 1)
+
+    String snapShotVersion = "${versions[0]}.${versions[1]}.${subVersionIncremented}-SNAPSHOT"
+
+    props.setProperty('version', snapShotVersion)
+    props.store(propsFile.newWriter(), null)
+
+    return snapShotVersion
 }
 
-// script will generate version from git describe command and update gradle.properties file
-task updateGradleProperties(type: Exec) {
-    commandLine = "./git-revision.sh"
-    println "executing ${commandLine}"
-    standardOutput = new ByteArrayOutputStream()
+task executeGitRevision {
     doLast {
-        ext.result = standardOutput.toString()
-        // update project version from gradle.properties file
-        Properties props = new Properties()
-        File propsFile = new File('gradle.properties')
-        props.load(propsFile.newDataInputStream())
-
-        props.setProperty('version', standardOutput.toString().replaceAll("\\n", ""))
-        props.store(propsFile.newWriter(), null)
+        new ByteArrayOutputStream().withStream { os ->
+            def result = exec {
+                workingDir '.'
+                commandLine './git-revision.sh'
+                standardOutput = os
+            }
+            ext.result = os.toString().replaceAll("\\n", "")
+        }
     }
 }
 
-task commitRelease(type: Exec) {
-    dependsOn updateGradleProperties
-
-    println "hey: " + project.version
-
-    commandLine = "./git-commit.sh"
-    println "executing ${commandLine}"
-    standardOutput = new ByteArrayOutputStream()
+task commitRelease {
+    dependsOn executeGitRevision
     doLast {
-        println "commit hash: " + standardOutput.toString()
+        updateVersionProperty(executeGitRevision.result)
+        exec {
+            commandLine = "./git-commit.sh"
+            args "[Gradle Release] Version update : ${executeGitRevision.result}"
+            println "executing ${commandLine}"
+        }
     }
-
 }
 
-
-
-// commit version update
-/*
-task runCommitScript(type: Exec) {
-    commandLine = "./git-commit.sh"
-    println "executing ${commandLine}"
-    standardOutput = new ByteArrayOutputStream()
+task postReleaseCommit {
+    dependsOn commitRelease
     doLast {
-        ext.result = standardOutput.toString()
+        String releaseVersion = generateReleaseVersion()
+        exec {
+            workingDir '.'
+            commandLine './git-commit.sh'
+            args "[Gradle Release] Snapshot version update : ${releaseVersion}"
+        }
+        ext.releaseVersion = releaseVersion.replace("-SNAPSHOT", "")
     }
 }
-runCommitScript.dependsOn('updateGradleProperties')
-
-task updateGradleProperties(dependsOn: runRevisionScript) {
-    doFirst {
-        println "clean version: ${runRevisionScript.result}"
-
-        // update project version from gradle.properties file
-        Properties props = new Properties()
-        File propsFile = new File('gradle.properties')
-        props.load(propsFile.newDataInputStream())
-
-        props.setProperty('version', version.replaceAll("\\n", ""))
-        props.store(propsFile.newWriter(), null)
-
-        println "version updated from gradle.properties"
-    }
-}
-
-task commitRelease() {
-    doFirst {
-        //println "commit hash: ${runCommitScript.result}"
-    }
-}
-commitRelease.dependsOn('updateGradleProperties')
-
-//         // commit gradle.properties file update
-//        println "commit hash: ${commitNewVersion.result}" */
