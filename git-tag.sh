@@ -1,6 +1,2 @@
 #!/bin/bash
-revisioncount=`git rev-list --all --count`
-projectversion=`git describe --tags --long`
-cleanversion=${projectversion%%-*}
-
-echo "$cleanversion.$revisioncount"
+git tag -a $1 -m "version tagging: $1"

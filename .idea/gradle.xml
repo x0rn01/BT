@@ -23,6 +23,11 @@
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/kotlin" />
         <option name="gradleHome" value="/opt/gradle/gradle-5.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/kotlin" />
+          </set>
+        </option>
         <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>

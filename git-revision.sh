@@ -1,5 +1,5 @@
 #!/bin/bash
-revisioncount=`git log --oneline | wc -l`
+revisioncount=`git rev-list --all --count`
 projectversion=`git describe --tags --long`
 cleanversion=${projectversion%%-*}
 
