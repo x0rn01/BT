@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.bval:org.apache.bval.bundle:2.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.bval/org.apache.bval.bundle/2.0.0/30df014e8a3c6a5ef5e58dc03c7196423669ae6b/org.apache.bval.bundle-2.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.bval/org.apache.bval.bundle/2.0.0/da39a3ee5e6b4b0d3255bfef95601890afd80709/org.apache.bval.bundle-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

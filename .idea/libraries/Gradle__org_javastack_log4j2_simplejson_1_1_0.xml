@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.javastack:log4j2-simplejson:1.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.javastack/log4j2-simplejson/1.1.0/32c0935e2ba3fa3d1b316d8e22a2568c91725621/log4j2-simplejson-1.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.javastack/log4j2-simplejson/1.1.0/20e48f1321899073f464b96b50303cf2a734ae0e/log4j2-simplejson-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

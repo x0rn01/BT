@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.http4k:http4k-resilience4j:3.114.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.http4k/http4k-resilience4j/3.114.0/1cd9572089da6e090bfe860190af25b4e6ca14d6/http4k-resilience4j-3.114.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.http4k/http4k-resilience4j/3.114.0/ea03308e7c59d467de9453b14a415cf1a4cd3ee2/http4k-resilience4j-3.114.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

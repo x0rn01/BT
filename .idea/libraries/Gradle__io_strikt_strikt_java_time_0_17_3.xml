@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.strikt:strikt-java-time:0.17.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.strikt/strikt-java-time/0.17.3/98bc16511280182ee15d67a6fa6b39fb097dd6f2/strikt-java-time-0.17.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.strikt/strikt-java-time/0.17.3/f1253cd48f160bf84a85e0a5dc3397466fc99413/strikt-java-time-0.17.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

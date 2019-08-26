@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.vertx:vertx-lang-kotlin:3.6.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-lang-kotlin/3.6.3/a6169c3d85ccb2c993dda7db3d9b82954033c542/vertx-lang-kotlin-3.6.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-lang-kotlin/3.6.3/e98d0577dacc4f98770fe7ac6c9231eca48956e7/vertx-lang-kotlin-3.6.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

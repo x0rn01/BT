@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.github.resilience4j:resilience4j-retry:0.13.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.resilience4j/resilience4j-retry/0.13.2/63787e911d3870c2ad15e0cc99e614c58b900882/resilience4j-retry-0.13.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.resilience4j/resilience4j-retry/0.13.2/a2c01683c6a2c832e00fe98ce502a0af4a93d4a2/resilience4j-retry-0.13.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

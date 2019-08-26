@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.vertx:vertx-stomp:3.6.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-stomp/3.6.3/509deb948ad4b1adecde9fb90649ded7a97bb90d/vertx-stomp-3.6.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-stomp/3.6.3/413be0c77ca5b74336d7ac80fdedce9dc8a6e42a/vertx-stomp-3.6.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,87 @@
+autoCorrect: true
+failFast: true
+
+build:
+  maxIssues: 50
+  weights:
+    complexity: 2
+    formatting: 1
+    LongParameterList: 1
+    comments: 1
+
+comments:
+  UndocumentedPublicClass:
+    active: false
+  UndocumentedPublicFunction:
+    active: false
+  EndOfSentenceFormat:
+    active: false
+
+naming:
+  MatchingDeclarationName:
+    active: false
+  FunctionMaxLength:
+    active: false
+
+complexity:
+  TooManyFunctions:
+    thresholdInFiles: 20
+    thresholdInClasses: 20
+    thresholdInInterfaces: 12
+    thresholdInObjects: 10
+    thresholdInEnums: 10
+  StringLiteralDuplication:
+    threshold: 5
+    ignoreAnnotation: true
+    excludeStringsWithLessThan5Characters: true
+    ignoreStringsRegex: '$^'
+  MethodOverloading:
+    active: false
+  LabeledExpression:
+    active: false
+  LongParameterList:
+    threshold: 10
+  ComplexInterface:
+    active: false
+
+exceptions:
+  TooGenericExceptionThrown:
+    exceptions:
+      - Error
+      - Throwable
+
+potential-bugs:
+  UnsafeCast:
+    active: false
+  LateinitUsage:
+    active: false
+
+style:
+  NewLineAtEndOfFile:
+    active: false
+  MagicNumber:
+    active: false
+  WildcardImport:
+    active: false
+  UseDataClass:
+    active: false
+  SpacingBetweenPackageAndImports:
+    active: false
+  OptionalWhenBraces:
+    active: false
+  UnnecessaryParentheses:
+    active: false
+  DataClassContainsFunctions:
+    active: false
+  MatchingDeclarationName:
+    active: false
+  UnusedPrivateMember:
+    active: false
+  MandatoryBracesIfStatements:
+    active: false
+  PreferToOverPairSyntax:
+    active: false
+  UnnecessaryApply:
+    active: false
+  ForbiddenComment:
+    active: false

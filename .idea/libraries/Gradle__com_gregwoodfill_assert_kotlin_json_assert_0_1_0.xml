@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.gregwoodfill.assert:kotlin-json-assert:0.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.gregwoodfill.assert/kotlin-json-assert/0.1.0/5f5f499e21ed8eb218f4c20098dd0bcfdffe6dcd/kotlin-json-assert-0.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.gregwoodfill.assert/kotlin-json-assert/0.1.0/fdc2ff9276d5ff8f2c9203ae48183d5162719c7f/kotlin-json-assert-0.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

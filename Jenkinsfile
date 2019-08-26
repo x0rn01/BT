@@ -11,7 +11,7 @@ pipeline {
       steps {
         timeout(time: 5, unit: 'MINUTES') {
           script {
-            sh './gradlew clean assemble check detekt --console=plain --warning-mode all'
+            sh './gradlew clean assemble check --console=plain --warning-mode all'
           }
         }
       }

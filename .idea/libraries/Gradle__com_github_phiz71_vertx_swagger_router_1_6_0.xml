@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.phiz71:vertx-swagger-router:1.6.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.phiz71/vertx-swagger-router/1.6.0/6982de7a48c9163e7e9c3672ae901c87eece55c3/vertx-swagger-router-1.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.phiz71/vertx-swagger-router/1.6.0/ad4326eca8ff02d945a6f8aff33c80e115b51e61/vertx-swagger-router-1.6.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
