@@ -18,7 +18,7 @@ node {
     stage('test')
               {
                     sh 'git name-rev --name-only HEAD'
-                    sh 'git symbolic-ref --short HEAD'
+                    env.BRANCH_NAME
               }
 
       stage('Build')
