@@ -30,7 +30,9 @@ node {
 
 
     stage('Upload') {
-        sh './gradlew publishRpm -PbranchParam=${env.BRANCH_NAME}'
+
+        $branch = env.BRANCH_NAME
+        sh "./gradlew publishRpm -PbranchParam=$branch"
     }
 }
 
