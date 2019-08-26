@@ -6,8 +6,8 @@ node {
     stage('Initialize')
     {
         def dockerHome = tool 'MyDocker'
-        def mavenHome  = tool 'MyMaven'
-        env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+        def gradleHome  = tool 'MyGradle'
+        env.PATH = "${dockerHome}/bin:${gradleHome}/bin:${env.PATH}"
     }
 
     stage('Checkout')
