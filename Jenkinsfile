@@ -21,11 +21,11 @@ node {
                     echo env.BRANCH_NAME
               }
 
-      stage('Build')
+     /* stage('Build')
            {
             sh './gradlew clean assemble check --console=plain --warning-mode all'
           }
-
+*/
 
 
 

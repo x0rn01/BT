@@ -294,6 +294,7 @@ class NexusUploadTask extends org.gradle.api.DefaultTask {
     String repo
     String publishedName
     String publishedExt
+    String branch
 
     @TaskAction
     def publish() {
@@ -309,8 +310,6 @@ class NexusUploadTask extends org.gradle.api.DefaultTask {
 
         def md5File = File.createTempFile(artifact.name, ".md5")
         md5File.text = md5
-
-        def branch = gitBranch()
 
         upload(artifact, root, repo, group, publishedName, ver, publishedExt, branch)
         upload(md5File, root, repo, group, publishedName, ver, "${publishedExt}.md5", branch)
@@ -329,19 +328,12 @@ class NexusUploadTask extends org.gradle.api.DefaultTask {
         println command
     }
 
-    def gitBranch() {
-        def branch = ""
-        def proc = "git rev-parse --abbrev-ref HEAD".execute()
-        proc.in.eachLine { line -> branch = line }
-        proc.err.eachLine { line -> println line }
-        proc.waitFor()
-        return branch
-    }
 }
 
 task publishRpm(type: NexusUploadTask) {
     root = 'http://nexus.ut.nat.bt.com'
     repo = 'ipt-artifacts'
+    branch = echo env.BRANCH_NAME
     artifact = file("$buildDir/distributions/${project.name}-${project.version}.noarch.rpm")
     publishedName = project.name
     publishedExt = '.rpm'
