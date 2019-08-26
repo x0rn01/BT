@@ -17,7 +17,8 @@ node {
 
     stage('test')
               {
-                    sh 'git branch | grep \\\* | cut -d ' ' -f2'
+                    sh 'git name-rev --name-only HEAD'
+                    sh 'git branch --show-current'
               }
 
       stage('Build')
