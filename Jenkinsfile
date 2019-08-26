@@ -12,10 +12,10 @@ node {
 
     stage('Checkout') {
             checkout([
-                //$class: 'GitSCM',
-                branches: [[name: '9.4']],
-                //extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
-                userRemoteConfigs: [[credentialsId: '36deca3b-4b18-494f-812a-a46cb631eccd', url: 'git@10.221.29.101:gecko']],
+                $class: 'GitSCM',
+                branches: scm.branches,
+                extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
+                userRemoteConfigs: [[credentialsId: '4a9169c0-6263-428d-9a82-7a1a43c1dc91', url: 'https://github.com/x0rn01/Kotlin.git']],
                 doGenerateSubmoduleConfigurations: false
             ])
         }
