@@ -23,7 +23,7 @@ node {
 
         stage('test')
           {
-                sh 'git branch | grep \* | cut -d ' ' -f2'
+                sh 'git branch | grep \\* | cut -d ' ' -f2'
           }
 
     stage('Upload') {
