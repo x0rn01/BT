@@ -23,7 +23,7 @@ node {
 
         stage('test')
           {
-                sh 'git rev-parse --abbrev-ref HEAD'
+                sh 'git branch | grep \* | cut -d ' ' -f2'
           }
 
     stage('Upload') {
