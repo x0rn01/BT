@@ -15,29 +15,20 @@ node {
         checkout scm
     }
 
-      stage('build') {
-            steps {
-              timeout(time: 5, unit: 'MINUTES') {
-                script {
-                  sh './gradlew clean assemble check --console=plain --warning-mode all'
-                }
-              }
-            }
+      stage('Build')
+           {
+            sh './gradlew clean assemble check --console=plain --warning-mode all'
           }
-          stage('test') {
-              steps {
-                  script {
-                      sh 'git rev-parse --abbrev-ref HEAD'
-                  }
-              }
+
+
+        stage('test')
+          {
+                sh 'git rev-parse --abbrev-ref HEAD'
           }
-          stage('upload') {
-                steps {
-                  script {
-                    sh './gradlew publishRpm'
-                  }
-                }
-          }
+
+    stage('Upload') {
+        sh './gradlew publishRpm'
+    }
 }
 
 /*
