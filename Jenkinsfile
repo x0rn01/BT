@@ -35,12 +35,6 @@ node {
 
 
     stage('Upload') {
-
-        def branch = env.BRANCH_NAME
-
-        sh "git tag"
-        sh "git log"
-
         sh '''
             LAST_TAG_VERSION=$(git describe --tags --match "*pre" --abbrev=0 HEAD)
 
@@ -52,11 +46,9 @@ node {
             echo ${NEXT_VERSION}.${BUILD_NUMBER} > result
         '''
 
-        def output=readFile('result').trim()
-
-        sh "echo output=$output"
-
-        sh "./gradlew publishRpm -PbranchParam=$branch"
+        def version=readFile('result').trim()
+        def branch = env.BRANCH_NAME
+        sh "./gradlew publishRpm -PbranchParam=$branch -PversionParam=$version"
     }
 }
 

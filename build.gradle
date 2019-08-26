@@ -295,13 +295,13 @@ class NexusUploadTask extends org.gradle.api.DefaultTask {
     String publishedName
     String publishedExt
     String branchName
+    String ver
 
     @TaskAction
     def publish() {
         def artifactBytes = artifact.bytes
 
         def group = project.group
-        def ver = project.version
 
         def md5 = java.security.MessageDigest
                 .getInstance("MD5")
@@ -337,6 +337,7 @@ task publishRpm(type: NexusUploadTask) {
     publishedName = project.name
     publishedExt = '.rpm'
     branchName = "${branchParam}"
+    ver = "${versionParam}"
 }
 publishRpm.dependsOn(buildRpm)
 
