@@ -19,6 +19,7 @@ pipeline {
     stage('test') {
         steps {
             script {
+                sh 'apt-get install -y unzip git'
                 sh 'git rev-parse --abbrev-ref HEAD'
             }
         }
