@@ -1,0 +1,61 @@
+package com.bt.uta.ipt.publish
+
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.TaskAction
+
+/**
+ * Publishes an artifact and an MD% digest to a 'raw' nexus repo (i.e. not Maven)
+ * Intended to use for RPMs
+ */
+class NexusUploadTask extends org.gradle.api.DefaultTask {
+    @Input
+    File artifact
+    String root
+    String repo
+    String publishedName
+    String publishedExt
+
+    @TaskAction
+    def publish() {
+        def artifactBytes = artifact.bytes
+
+        def group = project.group
+        def ver = project.version
+
+        def md5 = java.security.MessageDigest
+                .getInstance("MD5")
+                .digest(artifactBytes)
+                .encodeHex().toString()
+
+        def md5File = File.createTempFile(artifact.name, ".md5")
+        md5File.text = md5
+
+        def branch = gitBranch()
+
+        upload(artifact, root, repo, group, publishedName, ver, publishedExt, branch)
+        upload(md5File, root, repo, group, publishedName, ver, "${publishedExt}.md5", branch)
+    }
+
+    def upload(file, root, repo, group, name, ver, ext, branch) {
+        def path = "$root/repository/$repo/branches/$branch/$group/$name/$ver/$name-$ver$ext"
+        def command = "curl " +
+                "-u ${project.properties['nexus.username']}:${project.properties['nexus.password']} " +
+                "--upload-file ${file.absolutePath} " +
+                "--output /dev/stderr " +
+                "--silent " +
+                "--write-out %{http_code} " +
+                "${path}"
+
+        println command
+    }
+
+    def gitBranch() {
+        def branch = ""
+        def proc = "git rev-parse --abbrev-ref HEAD".execute()
+        proc.in.eachLine { line -> branch = line }
+        proc.err.eachLine { line -> println line }
+        proc.waitFor()
+        return branch
+    }
+}
+

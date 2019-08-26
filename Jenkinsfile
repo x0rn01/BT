@@ -16,6 +16,13 @@ pipeline {
         }
       }
     }
+    stage('upload') {
+          steps {
+            script {
+              sh './gradlew publishRpm'
+            }
+          }
+    }
   }
 }
 
