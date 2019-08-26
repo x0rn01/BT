@@ -18,7 +18,7 @@ node {
     stage('test')
               {
                     sh 'git name-rev --name-only HEAD'
-                    sh 'git branch --show-current'
+                    sh 'git symbolic-ref --short HEAD'
               }
 
       stage('Build')
