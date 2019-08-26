@@ -48,10 +48,6 @@ node {
 
             ./gradlew publishRpm -PbranchParam=$BRANCH -PversionParam=$VER
         '''
-
-        version=readFile('result').trim()
-        branch = env.BRANCH_NAME
-        sh "./gradlew publishRpm -PbranchParam=$branch -PversionParam=$version"
     }
 }
 
