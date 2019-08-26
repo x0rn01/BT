@@ -333,7 +333,7 @@ class NexusUploadTask extends org.gradle.api.DefaultTask {
 task publishRpm(type: NexusUploadTask) {
     root = 'http://nexus.ut.nat.bt.com'
     repo = 'ipt-artifacts'
-    branch = echo env.BRANCH_NAME
+    branch = branchParam
     artifact = file("$buildDir/distributions/${project.name}-${project.version}.noarch.rpm")
     publishedName = project.name
     publishedExt = '.rpm'
