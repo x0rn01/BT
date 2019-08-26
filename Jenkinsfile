@@ -46,7 +46,7 @@ node {
             VER=${NEXT_VERSION}.${BUILD_NUMBER}
             BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-            ./gradlew publishRpm -PbranchParam=$BRANCH -PversionParam=$VER"
+            ./gradlew publishRpm -PbranchParam=$BRANCH -PversionParam=$VER
         '''
 
         version=readFile('result').trim()
