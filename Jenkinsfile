@@ -49,7 +49,7 @@ node {
 
             BUILD_NUMBER=$(git rev-list ${LAST_TAG_VERSION}...HEAD --count)
 
-            echo "${NEXT_VERSION}.${BUILD_NUMBER} > result"
+            echo ${NEXT_VERSION}.${BUILD_NUMBER} > result
         '''
 
         def output=readFile('result').trim()
