@@ -38,6 +38,7 @@ node {
 
         def branch = env.BRANCH_NAME
 
+        sh "git tag"
         sh "git log"
 
         sh '''
