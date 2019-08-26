@@ -18,7 +18,7 @@ node {
     stage('test')
               {
                     sh 'git name-rev --name-only HEAD'
-                    env.BRANCH_NAME
+                    echo env.BRANCH_NAME
               }
 
       stage('Build')
