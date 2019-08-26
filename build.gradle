@@ -336,8 +336,8 @@ task publishRpm(type: NexusUploadTask) {
     artifact = file("$buildDir/distributions/${project.name}-${project.version}.noarch.rpm")
     publishedName = project.name
     publishedExt = '.rpm'
-    branchName = "${branchParam}"
-    ver = "${versionParam}"
+    branchName = project.hasProperty('branchParam') ? branchParam : 0
+    ver = project.hasProperty('versionParam') ? versionParam : 0
 }
 publishRpm.dependsOn(buildRpm)
 
