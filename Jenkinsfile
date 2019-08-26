@@ -33,7 +33,7 @@ pipeline {
       }
       steps {
         // Steps run in maven:3-alpine docker container on docker slave
-        sh 'gradle --version'
+        sh 'mvn --version'
       }
     }
   }
