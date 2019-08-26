@@ -49,48 +49,18 @@ node {
 
             BUILD_NUMBER=$(git rev-list ${LAST_TAG_VERSION}...HEAD --count)
 
-            echo "${NEXT_VERSION}.${BUILD_NUMBER}"
+            echo "${NEXT_VERSION}.${BUILD_NUMBER} > result"
         '''
+
+        def output=readFile('result').trim()
+
+        sh "echo output=$output"
 
         sh "./gradlew publishRpm -PbranchParam=$branch"
     }
 }
 
-/*
-pipeline {
-  agent {
-          docker {
-              image 'maven:3-alpine'
-              args '-v /root/.m2:/root/.m2'
-           }
- }
-  stages {
-    stage('build') {
-      steps {
-        timeout(time: 5, unit: 'MINUTES') {
-          script {
-            sh './gradlew clean assemble check --console=plain --warning-mode all'
-          }
-        }
-      }
-    }
-    stage('test') {
-        steps {
-            script {
-                sh 'git rev-parse --abbrev-ref HEAD'
-            }
-        }
-    }
-    stage('upload') {
-          steps {
-            script {
-              sh './gradlew publishRpm'
-            }
-          }
-    }
-  }
-}
-*/
+
 
 // Helpers
 @NonCPS
