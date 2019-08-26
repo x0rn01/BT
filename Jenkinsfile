@@ -36,6 +36,7 @@ pipeline {
         sh 'gradle --version'
       }
     }
+  }
 }
 
 /*
