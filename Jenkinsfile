@@ -14,7 +14,7 @@ node {
             checkout([
                 $class: 'GitSCM',
                 branches: scm.branches,
-                extensions: scm.extensions + [[$class: 'LocalBranch']],
+                extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
                 userRemoteConfigs: [[credentialsId: '36deca3b-4b18-494f-812a-a46cb631eccd', url: 'git@10.221.29.101:gecko']],
                 doGenerateSubmoduleConfigurations: false
             ])
