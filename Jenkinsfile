@@ -34,23 +34,24 @@ node {
 
 
 
-    stage('upload') {
-      steps {
+    stage('Upload') {
         sh '''
-          LAST_TAG_VERSION=$(git describe --tags --match "*pre" --abbrev=0 HEAD)
+            LAST_TAG_VERSION=$(git describe --tags --match "*pre" --abbrev=0 HEAD)
 
-          # Trim the .pre suffix to deduce the next version
-          NEXT_VERSION=${LAST_TAG_VERSION%.pre}
+            # Trim the .pre suffix to deduce the next version
+            NEXT_VERSION=${LAST_TAG_VERSION%.pre}
 
-          BUILD_NUMBER=$(git rev-list ${LAST_TAG_VERSION}...HEAD --count)
+            BUILD_NUMBER=$(git rev-list ${LAST_TAG_VERSION}...HEAD --count)
 
-          echo ${NEXT_VERSION}.${BUILD_NUMBER} > result
+            VER=${NEXT_VERSION}.${BUILD_NUMBER}
+            BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+            ./gradlew publishRpm -PbranchParam=$BRANCH -PversionParam=$VER"
         '''
 
-        def version=readFile('result').trim()
-        def branch = env.BRANCH_NAME
+        version=readFile('result').trim()
+        branch = env.BRANCH_NAME
         sh "./gradlew publishRpm -PbranchParam=$branch -PversionParam=$version"
-      }
     }
 }
 
