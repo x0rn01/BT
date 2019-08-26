@@ -15,21 +15,28 @@ node {
         checkout scm
     }
 
-      stage('Build')
-           {
-            sh 'uname -a'
-            //sh 'mvn -B -DskipTests clean package'
+      stage('build') {
+            steps {
+              timeout(time: 5, unit: 'MINUTES') {
+                script {
+                  sh './gradlew clean assemble check --console=plain --warning-mode all'
+                }
+              }
+            }
           }
-
-        stage('Test')
-        {
-            //sh 'mvn test'
-            sh 'ifconfig'
-        }
-
-        stage('Deliver')
-          {
-                sh 'gradle version'
+          stage('test') {
+              steps {
+                  script {
+                      sh 'git rev-parse --abbrev-ref HEAD'
+                  }
+              }
+          }
+          stage('upload') {
+                steps {
+                  script {
+                    sh './gradlew publishRpm'
+                  }
+                }
           }
 }
 
@@ -54,7 +61,6 @@ pipeline {
     stage('test') {
         steps {
             script {
-                sh 'apt-get install -y unzip git'
                 sh 'git rev-parse --abbrev-ref HEAD'
             }
         }
