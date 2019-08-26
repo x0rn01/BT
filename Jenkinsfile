@@ -10,10 +10,15 @@ node {
         env.PATH = "${dockerHome}/bin:${gradleHome}/bin:${env.PATH}"
     }
 
-    stage('Checkout')
-    {
-        checkout scm
-    }
+    stage('Checkout') {
+            checkout([
+                $class: 'GitSCM',
+                branches: scm.branches,
+                extensions: scm.extensions + [[$class: 'LocalBranch'],
+                userRemoteConfigs: [[credentialsId: '36deca3b-4b18-494f-812a-a46cb631eccd', url: 'git@10.221.29.101:gecko']],
+                doGenerateSubmoduleConfigurations: false
+            ])
+        }
 
     stage('test')
               {
@@ -34,6 +39,8 @@ node {
         def branch = env.BRANCH_NAME
 
         sh '''
+
+
             LAST_TAG_VERSION=$(git describe --tags --match "*pre" --abbrev=0 HEAD)
 
             # Trim the .pre suffix to deduce the next version
