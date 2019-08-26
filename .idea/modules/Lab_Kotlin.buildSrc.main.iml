@@ -18,7 +18,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.1-bin/djumv4jisrix1ndp1lfpceh59/gradle-5.1/lib/groovy-all-1.0-2.5.4.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.1-bin/djumv4jisrix1ndp1lfpceh59/gradle-5.1/lib/gradle-installation-beacon-5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -27,7 +27,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.1-bin/djumv4jisrix1ndp1lfpceh59/gradle-5.1/lib/gradle-installation-beacon-5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.1-bin/djumv4jisrix1ndp1lfpceh59/gradle-5.1/lib/groovy-all-1.0-2.5.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

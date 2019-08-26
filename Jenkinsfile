@@ -16,6 +16,13 @@ pipeline {
         }
       }
     }
+    stage('test') {
+        steps {
+            script {
+                sh 'git rev-parse --abbrev-ref HEAD'
+            }
+        }
+    }
     stage('upload') {
           steps {
             script {
