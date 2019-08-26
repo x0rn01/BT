@@ -38,9 +38,9 @@ node {
 
         def branch = env.BRANCH_NAME
 
+        sh "git checkout $branch"
+
         sh '''
-
-
             LAST_TAG_VERSION=$(git describe --tags --match "*pre" --abbrev=0 HEAD)
 
             # Trim the .pre suffix to deduce the next version
