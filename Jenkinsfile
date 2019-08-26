@@ -15,16 +15,18 @@ node {
         checkout scm
     }
 
+    stage('test')
+              {
+                    sh 'git branch | grep \\\* | cut -d ' ' -f2'
+              }
+
       stage('Build')
            {
             sh './gradlew clean assemble check --console=plain --warning-mode all'
           }
 
 
-        stage('test')
-          {
-                //sh 'git branch | grep \\* | cut -d ' ' -f2'
-          }
+
 
     stage('Upload') {
         sh './gradlew publishRpm'

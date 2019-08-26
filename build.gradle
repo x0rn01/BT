@@ -331,7 +331,7 @@ class NexusUploadTask extends org.gradle.api.DefaultTask {
 
     def gitBranch() {
         def branch = ""
-        def proc = "git branch | grep \\* | cut -d ' ' -f2".execute()
+        def proc = "git rev-parse --abbrev-ref HEAD".execute()
         proc.in.eachLine { line -> branch = line }
         proc.err.eachLine { line -> println line }
         proc.waitFor()
