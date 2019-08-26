@@ -1,9 +1,6 @@
 #!/usr/bin/env groovy
 pipeline {
   agent { node { label 'lab' } }
-  tools {
-    jdk 'OpenJDK-11.0.2'
-  }
   stages {
     stage('build') {
       steps {
