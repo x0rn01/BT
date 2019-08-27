@@ -32,6 +32,7 @@ node {
           }
         )
       }
+    }
 
      /* stage('Build')
            {
