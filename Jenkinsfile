@@ -20,11 +20,18 @@ node {
             ])
         }
 
-    stage('test')
-              {
-                    sh 'git name-rev --name-only HEAD'
-                    echo env.BRANCH_NAME
-              }
+
+    stage('run-parallel-branches') {
+      steps {
+        parallel(
+          a: {
+            echo "This is branch a"
+          },
+          b: {
+            echo "This is branch b"
+          }
+        )
+      }
 
      /* stage('Build')
            {
@@ -33,6 +40,7 @@ node {
 */
 
 
+/*
 
     stage('Upload') {
         sh '''
@@ -48,7 +56,7 @@ node {
 
             ./gradlew publishRpm -PbranchParam=$BRANCH -PversionParam=$VER
         '''
-    }
+    }*/
 }
 
 
