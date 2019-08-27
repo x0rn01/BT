@@ -22,7 +22,7 @@ node {
 
 
     stage('run-parallel-branches') {
-      steps {
+      //steps {
         parallel(
           a: {
             echo "This is branch a"
@@ -31,7 +31,7 @@ node {
             echo "This is branch b"
           }
         )
-      }
+      //}
     }
 
      /* stage('Build')
